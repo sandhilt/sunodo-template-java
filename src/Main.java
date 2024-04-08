@@ -43,11 +43,13 @@ public class Main {
 
         if(responseCode == 202) {
           System.out.println("No pending rollup request, trying again");
+          con.disconnect();
           continue;
         }
 
         if(responseCode != 200) {
           System.out.println("Error: " + responseCode);
+          con.disconnect();
           continue;
         }
 
@@ -76,6 +78,7 @@ public class Main {
               System.out.println("Unknown request type: " + requestType);
               break;
           }
+          con.disconnect();
         }
       } catch (Exception e) {
           if (con != null) {
